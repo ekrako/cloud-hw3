@@ -34,8 +34,7 @@ jobs:
         name: build image
         continue-on-error: true
         run: |
-          docker build -t cloud-hw3:latest . 
-          if [ $? -eq 0 ]; then
+          if [ docker build -t cloud-hw3:latest . -eq 0 ]; then
           echo "image successfully built" >> /tmp/log.txt
           else
           echo "image not able to be built" >> /tmp/log.txt
