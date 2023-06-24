@@ -104,7 +104,7 @@ jobs:
       -
         name: Run tests
         run: |
-          pytest tests/tests.py -v > /tmp/assn3_test_results.txt
+          pytest tests/tests1.py -v > /tmp/assn3_test_results.txt
           echo "tests succeeded" >> /tmp/log.txt
       - 
         name: log failed tests
