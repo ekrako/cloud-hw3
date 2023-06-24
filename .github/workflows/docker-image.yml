@@ -34,7 +34,8 @@ jobs:
         name: build image
         continue-on-error: true
         run: |
-          if [ docker build -t cloud-hw3:latest . -eq 0 ]; then
+          result=$(docker build -t cloud-hw3:latest .)
+          if [ result -eq 0 ]; then
           echo "image successfully built" >> /tmp/log.txt
           docker save cloud-hw3:latest /tmp/cloud-hw3.tar
           else
@@ -48,6 +49,12 @@ jobs:
             path: |
               /tmp/cloud-hw3.tar
               /tmp/log.txt
+      - 
+        name: check run
+        run: |          
+          if [ $result -ne 0 ]; then
+            exit $result
+          fi
 
   test:
     runs-on: ubuntu-latest
@@ -105,3 +112,9 @@ jobs:
             path: |
               /tmp/assn3_test_results.txt
               /tmp/log.txt
+      - 
+        name: check run
+        run: |          
+          if [ $result -ne 0 ]; then
+            exit $result
+          fi
