@@ -6,6 +6,8 @@ import connectionController
 def assert_err_code(response: requests.Response, error_code: int):
     assert response.status_code == error_code
 
+def assert_any_of_err_code(response: requests.Response, error_codes: list[int]):
+    assert response.status_code in error_codes
 
 def assert_ret_value(response: requests.Response, returned_value: any):
     assert response.json() == returned_value

@@ -70,6 +70,11 @@ jobs:
         name: Run container
         run: |
           docker run --rm -d -p 8000:5001 cloud-hw3:latest
+          if [ $? -eq 0 ]; then
+            echo "Container up and running" >> /tmp/log.txt
+          else
+            echo "Container failed to run" >> /tmp/log.txt
+          fi
       -
         name: Install dependencies
         run: |    
@@ -78,7 +83,7 @@ jobs:
       -
         name: Run tests
         run: |
-          pytest tests/tests.py -v > /tmp/test_log.txt
+          pytest tests/tests.py -v > /tmp/assn3_test_results.txt
           if [ $? -eq 0 ]; then
             echo "tests succeeded" >> /tmp/log.txt
           else
@@ -90,5 +95,5 @@ jobs:
         with:
             name: results
             path: |
-              /tmp/test_log.txt
+              /tmp/assn3_test_results.txt
               /tmp/log.txt

@@ -101,3 +101,16 @@ BRIOCHE = {
     "sodium": 369,
     "sugar": 7
 }
+
+ORANGE = {
+    "name": "orange",
+}
+
+SPAGHETTI = {
+    "name": "spaghetti",
+    "cal": 157.7,
+}
+
+APPLE_PIE = {
+    "name": "apple pie",
+}
