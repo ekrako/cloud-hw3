@@ -1,6 +1,6 @@
 import connectionController
-from tests.assertions import assert_any_of_err_code, assert_err_code, assert_ret_value
-from tests.restApiController import add_dish, add_meal
+from assertions import assert_any_of_err_code, assert_err_code, assert_ret_value
+from restApiController import add_dish, add_meal
 
 def get_dish_id(dish_name: str) -> int:
     response = connectionController.http_get(f"dishes/{dish_name}")
@@ -12,7 +12,7 @@ def get_dish_id(dish_name: str) -> int:
 # tests for dish API
 
 def test_create_3_dishes():
-    ids = {add_dish(dish_name['name']) for dish_name in ["orange", "spaghetti", "apple pie"]}
+    ids = {add_dish(dish_name) for dish_name in ["orange", "spaghetti", "apple pie"]}
     assert len(ids) == 3
     
 def test_get_orange():
@@ -34,11 +34,10 @@ def test_add_invalid_dish():
     assert_ret_value(response, -3)
     
 def test_add_exists_dish():
-    response = connectionController.http_get("dishes/orange")
-    if response.status_code == 404:
-        add_dish("orange")
     DISH_NAME = "orange"
-    add_dish(DISH_NAME)
+    response = connectionController.http_get(f"dishes/{DISH_NAME}")
+    if response.status_code == 404:
+        add_dish(DISH_NAME)
     response = connectionController.http_post("dishes", {"name": DISH_NAME})
     assert_any_of_err_code(response,[422,404,400])
     assert_ret_value(response, -2)
