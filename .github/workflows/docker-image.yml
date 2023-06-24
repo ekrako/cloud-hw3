@@ -39,14 +39,21 @@ jobs:
         run: |
           echo "image successfully built" >> /tmp/log.txt
       -
-        name: Upload artifact
+        name: Upload image
+        uses: actions/upload-artifact@v3
+        with:
+            name: docker-image
+            path: |
+              /tmp/cloud-hw3.tar
+      -
+        name: Upload log
         if: always()
         uses: actions/upload-artifact@v3
         with:
-            name: results
+            name: logs
             path: |
               /tmp/log.txt
-              /tmp/cloud-hw3.tar
+        
 
   test:
     runs-on: ubuntu-latest
@@ -59,10 +66,16 @@ jobs:
         name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
       -
-        name: Download artifact
+        name: Download Docker Image
         uses: actions/download-artifact@v3
         with:
-          name: results
+          name: docker-image
+          path: /tmp
+      -
+        name: Download logs
+        uses: actions/download-artifact@v3
+        with:
+          name: logs
           path: /tmp
       -
         name: Load image
@@ -99,11 +112,11 @@ jobs:
         run: |
           echo "tests failed" >> /tmp/log.txt
       -
-        name: Upload artifact
+        name: Upload logs
         if: always()
         uses: actions/upload-artifact@v3
         with:
-            name: results
+            name: logs
             path: |
               /tmp/assn3_test_results.txt
               /tmp/log.txt
