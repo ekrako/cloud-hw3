@@ -46,20 +46,13 @@ def test_add_exists_dish():
 # tests for meals API
 
 
-def test_meals_sanity():
-    NO_MEALS = {}
-    response = connectionController.http_get("meals")
-    assert_err_code(response, error_code=200)
-    assert_ret_value(response, NO_MEALS)
-
-
-def add_first_meal():
+def test_add_first_meal():
     appetizer_id = get_dish_id("orange")
     main_id = get_dish_id("spaghetti")
     dessert_id = get_dish_id("apple pie")
     add_meal("delicious", appetizer_id, main_id, dessert_id)
 
-def get_first_meal():
+def test_get_first_meal():
     response = connectionController.http_get("meals")
     meal_ids = response.json().keys()
     assert len(meal_ids) == 1
