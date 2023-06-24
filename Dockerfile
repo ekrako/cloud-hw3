@@ -4,5 +4,4 @@ RUN pip3 install --no-cache-dir -r /tmp/requierments.txt && rm /tmp/requierments
 COPY src/ /app
 WORKDIR /app
 EXPOSE 5001
-COPY src1/ /app
 CMD ["python3", "main.py"]
