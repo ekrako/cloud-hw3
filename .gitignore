@@ -1,0 +1,16 @@
+.DS_Store
+.venv/
+__pycache__
+.vscode
+.coverage
+.mypy_cache
+cov.xml
+af-experiment-tracking.egg-info/
+build/
+dist/
+mlruns/
+artifact_downloads/
+test/artifacts/*
+.env
+.tox
+.pytest_cache
