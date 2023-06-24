@@ -39,7 +39,7 @@ jobs:
           echo $result
           if [ $result -eq 0 ]; then
             echo "image successfully built" >> /tmp/log.txt
-            docker save /tmp/cloud-hw3.tar cloud-hw3:latest
+            docker save -o /tmp/cloud-hw3.tar cloud-hw3:latest
             result=$?
             echo $result
           else
