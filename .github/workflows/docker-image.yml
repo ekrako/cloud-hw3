@@ -86,6 +86,9 @@ jobs:
         continue-on-error: true
         run: |
           pytest tests/tests.py -v > /tmp/assn3_test_results.txt
+      -
+        name: log tests
+        run: |
           if [ $? -eq 0 ]; then
             echo "tests succeeded" >> /tmp/log.txt
           else

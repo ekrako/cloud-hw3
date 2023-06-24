@@ -54,10 +54,10 @@ def test_add_first_meal():
 
 def test_get_first_meal():
     response = connectionController.http_get("meals")
-    meal_ids = response.json().keys()
+    meal_ids = list(response.json().keys())
     assert len(meal_ids) == 1
-    meal = response.json().keys()[meal_ids[0]]
-    assert 400 <= meal["calories"] <= 500
+    meal = response.json()[meal_ids[0]]
+    assert 400 <= meal["cal"] <= 500
 
 def test_add_exists_meal():
     meal = {"name": "test_add_exists_meal meal", "appetizer": 1, "main": 1, "dessert": 1}
