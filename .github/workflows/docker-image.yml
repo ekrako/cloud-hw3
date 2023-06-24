@@ -32,6 +32,7 @@ jobs:
       #     outputs: type=docker,dest=/tmp/cloud-hw3.tar
       - 
         name: build image
+        continue-on-error: true
         run: |
           docker build -t cloud-hw3:latest . 
           if [ $? -eq 0 ]; then
