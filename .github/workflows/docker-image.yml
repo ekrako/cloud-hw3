@@ -34,7 +34,7 @@ jobs:
         name: build image
         continue-on-error: true
         run: |
-          $(docker build -t cloud-hw3:latest .)
+          docker build -t cloud-hw3:latest .
           result=$?
           echo $result
           if [ result -eq 0 ]; then
