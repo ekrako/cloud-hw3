@@ -34,12 +34,14 @@ jobs:
         name: build image
         continue-on-error: true
         run: |
-          result=$(docker build -t cloud-hw3:latest .)
+          $(docker build -t cloud-hw3:latest .)
+          result=$?
+          echo $result
           if [ result -eq 0 ]; then
-          echo "image successfully built" >> /tmp/log.txt
-          docker save cloud-hw3:latest /tmp/cloud-hw3.tar
+            echo "image successfully built" >> /tmp/log.txt
+            docker save cloud-hw3:latest /tmp/cloud-hw3.tar
           else
-          echo "image not able to be built" >> /tmp/log.txt
+            echo "image not able to be built" >> /tmp/log.txt
           fi
       -
         name: Upload artifact
@@ -99,7 +101,9 @@ jobs:
         name: Run tests
         continue-on-error: true
         run: |
-          if [ pytest tests/tests.py -v > /tmp/assn3_test_results.txt -eq 0 ]; then
+          pytest tests/tests.py -v > /tmp/assn3_test_results.txt
+          result=$?
+          if [ result -eq 0 ]; then
             echo "tests succeeded" >> /tmp/log.txt
           else
             echo "tests failed" >> /tmp/log.txt
