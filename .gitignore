@@ -15,3 +15,4 @@ test/artifacts/*
 .tox
 .pytest_cache
 instance/
+response.txt
