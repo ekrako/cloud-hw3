@@ -144,7 +144,7 @@ jobs:
       -
         name: Run container
         run: |
-          docker run --rm -d -p 8000:5001 cloud-hw3:latest
+          docker run --rm -d -p 8000:8000 cloud-hw3:latest
       - 
         name: Set up Python
         uses: actions/setup-python@v4
