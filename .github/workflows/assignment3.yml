@@ -20,7 +20,7 @@ jobs:
       -
         name: Generate Log File
         run: |
-          echo "$(date –Iminutes)" > /tmp/log.txt
+          echo "$(date --iso-8601=minutes)" > /tmp/log.txt
           echo "Eran Krakovsky, Noa Leonard" >> /tmp/log.txt
       -
         name: Build and export
