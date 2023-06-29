@@ -20,8 +20,8 @@ jobs:
       -
         name: Generate Log File
         run: |
-          echo "$(date --iso-8601=minutes)" > /tmp/log.txt
-          echo "Eran Krakovsky, Noa Landau" >> /tmp/log.txt
+          echo "$(date –Iminutes)" > /tmp/log.txt
+          echo "Eran Krakovsky, Noa Leonard" >> /tmp/log.txt
       -
         name: Build and export
         uses: docker/build-push-action@v4
@@ -84,7 +84,7 @@ jobs:
       -
         name: Run container
         run: |
-          docker run --rm -d -p 8000:5001 cloud-hw3:latest
+          docker run --rm -d -p 8000:8000 cloud-hw3:latest
           if [ $? -eq 0 ]; then
             echo "Container up and running" >> /tmp/log.txt
           else
@@ -104,7 +104,7 @@ jobs:
       -
         name: Run tests
         run: |
-          pytest tests/tests.py -v > /tmp/assn3_test_results.txt
+          pytest tests/assn3_tests.py -v > /tmp/assn3_test_results.txt
           echo "tests succeeded" >> /tmp/log.txt
       - 
         name: log failed tests
